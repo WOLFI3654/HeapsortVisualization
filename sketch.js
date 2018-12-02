@@ -52,6 +52,13 @@ async function pressed() {
     }
 }
 
+function mouseWheel(event) {
+    //move the square according to the vertical scroll amount
+    scl += 0.01 * event.delta;
+    //uncomment to block page scrolling
+    //return false;
+}
+
 function layers() {
     return Math.log2(list.length) + 1;
 }
@@ -63,14 +70,6 @@ function windowResized() {
 function draw() {
     background(0);
     translate(width / 2, height / 2);
-    scale(scl);
-    for (let i = 0; i < nodes.length; i++) {
-        if (nodes[i]) {
-            nodes[i].update();
-            nodes[i].draw();
-        } else console.log("lol");
-    }
-
     for (let i = 0; i < list.length; i++) {
         textSize(30);
         textAlign(CENTER);
@@ -81,6 +80,15 @@ function draw() {
         stroke(255);
         rect(50 * i - width / 2, -height / 2, 50, 50);
     }
+    scale(scl);
+    for (let i = 0; i < nodes.length; i++) {
+        if (nodes[i]) {
+            nodes[i].update();
+            nodes[i].draw();
+        } else console.log("lol");
+    }
+
+
 }
 
 async function setParents() {
@@ -136,6 +144,7 @@ async function downheap(v) {
         w = 2 * v + 1;
     }
 }
+
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
