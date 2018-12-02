@@ -1,4 +1,4 @@
-let input, insert, insertBtn, btnInsert, sort, output;
+let input, insert, insertBtn, btnInsert, sort, output, speed;
 let nodes = [];
 let list = [];
 let n;
@@ -24,7 +24,10 @@ async function setup() {
         n = list.length;
         heapsort()
     });
+    speed = createSlider();
+    speed.style('float', 'right');
     output = createSpan();
+
 }
 
 async function onInsert() {
@@ -111,14 +114,14 @@ async function swap(i, j) {
     nodes[j].index = j;
     nodes[i].index = i;
     await setParents();
-    await sleep(500);
+    await sleep(map(speed.value(), 0, 100, 3000, 200));
 
 }
 
 
 async function heapsort() {
     await buildheap();
-    await sleep(2000);
+    await sleep(map(speed.value(), 0, 100, 200, 2000) * 2);
     while (n > 1) {
         n--;
         await swap(0, n);
