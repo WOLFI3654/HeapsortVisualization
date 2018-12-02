@@ -120,21 +120,19 @@ async function heapsort() {
 }
 
 async function buildheap() {
-    for (let v = n / 2 - 1; v >= 0; v--)
-        await downheap(Math.floor(v));
+    for (let index = n / 2 - 1; index >= 0; index--)
+        await downheap(Math.floor(index));
 }
 
 async function downheap(v) {
-    let w = 2 * v + 1;         // erster Nachfolger von v
+    let w = 2 * v + 1;
     while (w < n) {
-        if (w + 1 < n)       // gibt es einen zweiten Nachfolger?
+        if (w + 1 < n)
             if (list[w + 1] > list[w]) w++;
-        // w ist der Nachfolger von v mit maximaler Markierung
 
-        if (list[v] >= list[w]) return;  // v hat die Heap-Eigenschaft
-        // sonst
-        await swap(v, w);  // vertausche Markierungen von v und w
-        v = w;             // fahre mit v=w fort
+        if (list[v] >= list[w]) return;
+        await swap(v, w);
+        v = w;
         w = 2 * v + 1;
     }
 }
