@@ -36,14 +36,14 @@ function TreeNode(index, value) {
 
     this.draw = function () {
         push();
-        stroke(255 - color);
+        stroke(colors.stroke);
         if (this.parent) line(this.parent.x, this.parent.y, this.x, this.y);
         textSize(30);
         textAlign(CENTER);
-        stroke(255 - color);
-        fill(200 - color);
+        stroke(colors.stroke);
+        fill(colors.fill);
         ellipse(this.x, this.y, this.w, this.h);
-        fill(255 - color);
+        fill(colors.text);
 
         text(this.value, this.x, this.y);
 

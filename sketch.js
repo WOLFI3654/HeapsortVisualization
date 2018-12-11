@@ -3,7 +3,8 @@ let nodes = [];
 let list = [];
 let n;
 let scl = 1;
-let color = 0;
+const colors = {background: [0, 164, 184], stroke: [0], text: [255], fill: [0, 85, 95]};
+
 async function setup() {
     var cnv = createCanvas(windowWidth, windowHeight - 30);
     cnv.style('display', 'block');
@@ -71,16 +72,16 @@ function windowResized() {
 }
 
 function draw() {
-    background(color);
+    background(colors.background);
     translate(width / 2, height / 2);
     for (let i = 0; i < list.length; i++) {
         textSize(30);
         textAlign(CENTER);
-        stroke(255-color);
-        fill(255-color);
+        stroke(colors.stroke);
+        fill(colors.text);
         text(list[i], 50 * i - width / 2 + 25, 30 - height / 2);
         noFill();
-        stroke(255-color);
+        stroke(colors.stroke);
         rect(50 * i - width / 2, -height / 2, 50, 50);
     }
     scale(scl);
