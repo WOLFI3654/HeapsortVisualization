@@ -23,7 +23,7 @@ async function setup() {
     sort = createButton('sort');
     sort.mousePressed(() => {
         n = list.length;
-        heapsort()
+        heapsort();
     });
     speed = createSlider();
     speed.style('float', 'right');
